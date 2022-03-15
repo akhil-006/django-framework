@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fibonacci Results</title>
+</head>
+<body>
+    {% for obj in objects %}
+    <li>RESULT for Input: {{ obj.input }}</li>
+    <li>OUTPUT: {{ obj.output }}</li>
+    <li>STATUS: {{ obj.status }}</li>
+    <li>DATE CREATED: {{ obj.date_created }}</li>
+    <li>DATE MODIFIED: {{ obj.date_modified }}</li>
+    &nbsp;&nbsp;
+    {% endfor %}
+</body>
+</html>
