@@ -12,6 +12,12 @@ class FibListView(View):
         return render(request, 'fib/calculationresult.html', {'objects': objects})
 
 
+def Back(request):
+    form = FibForm()
+    url = request.path.replace('back', 'start')
+    return redirect(url, {'form': form})
+
+
 def StartNewCalculation(request):
     if request.method.lower() == 'post':
         form = FibForm(request.POST)

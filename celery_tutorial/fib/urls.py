@@ -20,4 +20,5 @@ from . import views
 urlpatterns = [
     path('start/', views.StartNewCalculation, name='start'),
     path('calculate/', views.FibListView.as_view(), name='calculate'),
+    path('back/', views.Back, name='back'),
 ]

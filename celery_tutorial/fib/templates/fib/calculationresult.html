@@ -5,6 +5,7 @@
     <title>Fibonacci Results</title>
 </head>
 <body>
+    <p title="Fibonacci Result">Fibonacci Series Result</p>
     {% for obj in objects %}
     <li>RESULT for Input: {{ obj.input }}</li>
     <li>OUTPUT: {{ obj.output }}</li>
@@ -13,5 +14,9 @@
     <li>DATE MODIFIED: {{ obj.date_modified }}</li>
     &nbsp;&nbsp;
     {% endfor %}
+
+<form action="{% url 'back' %}" method="GET">
+    <button type="submit" name="back/">Back</button>
+</form>
 </body>
 </html>
