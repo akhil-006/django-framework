@@ -18,14 +18,14 @@ def clear_cache():
 
 def fib_seq(n):
     # 0,1,1,2,3,5,8,13,21,34,55,89,144
-    global a, b, i, d
-    a, b = b, a + b
-
+    global a, b, i
     d[i], d[i + 1] = a, b
+
     if i == n:
         return d[i]
     else:
         i += 1
+    a, b = b, a + b
 
     return fib_seq(n)
 
