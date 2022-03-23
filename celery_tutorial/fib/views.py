@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.urls import reverse
 from django.views import View
 from .models import FibModel
 from .forms import FibForm
@@ -11,7 +12,7 @@ class FibListView(View):
     objects_per_page = 6
 
     def get(self, request):
-        objects = FibModel.objects.all().order_by('date_created')
+        objects = FibModel.objects.all().order_by('-date_created')
         objects = Paginator(objects, self.objects_per_page)
         # print('OBJECTS COUNT: ', objects.count)
         try:
@@ -21,7 +22,7 @@ class FibListView(View):
             print(f'Page not found: {ep}')
             pages = objects.page(objects.num_pages)
         except PageNotAnInteger as pgni:
-            print(f'Page not found: {pgni}')
+            print(f'Page not an integer error: {pgni}')
             pages = objects.page(1)
 
         context = {
@@ -32,7 +33,7 @@ class FibListView(View):
 
 def Back(request):
     form = FibForm()
-    url = request.path.replace('back', 'start')
+    url = reverse('start')
     return redirect(url, {'form': form})
 
 
@@ -45,7 +46,7 @@ def StartNewCalculation(request):
             fib_task.delay(int(inpt))
             objects = FibModel.objects.values()
             # print('OUTPUT:: ', objects)
-            url = request.path.replace('start', 'calculate')
+            url = f"{reverse('calculate')}?page=1"
             return redirect(url, {'objects': objects})
     form = FibForm()
     return render(request, 'fib/newcalculation.html', {'form': form})
