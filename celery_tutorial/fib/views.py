@@ -8,7 +8,7 @@ from .tasks import fib_task
 
 # Create your views here.
 class FibListView(View):
-    objects_per_page = 10
+    objects_per_page = 6
 
     def get(self, request):
         objects = FibModel.objects.all().order_by('date_created')
