@@ -8,6 +8,12 @@ from .tasks import fib_task
 
 
 # Create your views here.
+def Welcome(request):
+    return render(request, 'fib/welcome.html')
+
+
+
+
 class FibListView(View):
     objects_per_page = 6
 
@@ -35,6 +41,13 @@ def Back(request):
     form = FibForm()
     url = reverse('start')
     return redirect(url, {'form': form})
+
+
+def ClearAll(request):
+    objects = FibModel.objects.all().delete()
+    print(objects)
+    url = reverse('start')
+    return redirect(url, {'form': FibForm()})
 
 
 def StartNewCalculation(request):

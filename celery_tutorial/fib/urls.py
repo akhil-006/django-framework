@@ -18,7 +18,10 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
+    path('', views.Welcome, name='welcome'),
+    path('', views.Welcome, name='login'),
     path('start/', views.StartNewCalculation, name='start'),
     path('calculate/', views.FibListView.as_view(), name='calculate'),
     path('back/', views.Back, name='back'),
+    path('clearall/', views.ClearAll, name='clearall'),
 ]
