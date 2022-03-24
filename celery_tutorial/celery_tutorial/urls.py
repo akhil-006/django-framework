@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path("fib/", include("fib.urls"), name="fib"),
     path("admin/", admin.site.urls),
+    path("fib/", include("fib.urls"), name="fib"),
+    path("accounts/", include("authenticate_authorization_app.urls"), name="accounts"),
 ]

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "fib",
+    "authenticate_authorization_app",
 ]
 
 MIDDLEWARE = [
