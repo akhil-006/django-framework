@@ -1,0 +1,21 @@
+{% extends "accounts/home.html" %}
+
+{% block titled %} Sign In {% endblock %}
+
+{% block content %}
+<h3>Welcome {{ variable_user }}! Please sign in!</h3>
+<form action="{% url 'signin' %}" method="post">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="username" class="form-label">Username</label>
+    <input type="text" class="form-control" id="username" name="username" required>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" name="pass1" required>
+  </div>
+    <button type="submit" class="btn btn-dark">Submit</button>
+    <button type="reset" class="btn btn-dark">Reset</button>
+    <button type="submit" class="btn btn-dark"><a href="{% url 'home' %}">Cancel</a></button>
+</form>
+{% endblock %}
