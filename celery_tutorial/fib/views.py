@@ -12,8 +12,6 @@ def Welcome(request):
     return render(request, 'fib/welcome.html')
 
 
-
-
 class FibListView(View):
     objects_per_page = 6
 
@@ -54,7 +52,8 @@ def StartNewCalculation(request):
     if request.method.lower() == 'post':
         form = FibForm(request.POST)
         if form.is_valid():
-            inpt = FibModel.objects.create(input=form.cleaned_data['input']).input
+            inpt = FibModel.objects.create(
+                input=form.cleaned_data['input']).input
             # print('INP:: ', inp.input)
             fib_task.delay(int(inpt))
             objects = FibModel.objects.values()
@@ -63,4 +62,3 @@ def StartNewCalculation(request):
             return redirect(url, {'objects': objects})
     form = FibForm()
     return render(request, 'fib/newcalculation.html', {'form': form})
-

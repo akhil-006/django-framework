@@ -1,5 +1,4 @@
 import datetime
-import time
 
 from celery_tutorial.celery import app
 from .models import FibModel
@@ -35,10 +34,18 @@ def fib_seq(n):
 def fib_task(self, id_val):
     fib = FibModel.objects.filter(input__exact=id_val)
     try:
-        fib.create(output=str(fib_seq(id_val)), status='success', date_modified=datetime.datetime.now()) if not list(fib) else \
-            fib.update(output=str(fib_seq(id_val)), status='success', date_modified=datetime.datetime.now())
+        fib.create(
+            output=str(fib_seq(id_val)), status='success',
+            date_modified=datetime.datetime.now()) \
+                if not list(fib) else \
+                fib.update(
+                    output=str(fib_seq(id_val)),
+                    status='success', date_modified=datetime.datetime.now())
     except Exception as ex:
-        fib.update(output=ex.__str__(), status='error', date_modified=datetime.datetime.now())
+        fib.update(
+            output=ex.__str__(), status='error',
+            date_modified=datetime.datetime.now()
+        )
     clear_cache()
 
 
