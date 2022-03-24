@@ -2,5 +2,5 @@ from django.apps import AppConfig
 
 
 class FibConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'fib'
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "fib"
